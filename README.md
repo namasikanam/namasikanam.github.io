@@ -1,1 +1,1 @@
-This is my personal academic website.
+This is my personal academic website built by [Jekyll](http://jekyllrb.com/) and theme [AcademicPages](https://github.com/academicpages/academicpages.github.io).

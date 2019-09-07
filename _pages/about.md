@@ -8,4 +8,6 @@ redirect_from:
   - /about.html
 ---
 
-There is nothing.
+I'm a junior undergraduate student in Department of Computer Science & Technology, Tsinghua University. Here's my [résumé](files/resume.pdf).
+
+*Update: 2019-09-07*
