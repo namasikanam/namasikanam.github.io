@@ -1,0 +1,198 @@
+/* Dark Academic Style - Inspired by classic academic pages */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: monospace, 'Courier New', Courier;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #fff;
+    background-color: #000;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* Name/Title */
+h1.name {
+    font-size: 1.6em;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+h1.name a {
+    color: #00ff00;
+    text-decoration: underline;
+}
+
+h1.name a:hover {
+    color: #00cc00;
+}
+
+/* Affiliation block */
+.affiliation {
+    margin-bottom: 30px;
+    line-height: 1.8;
+}
+
+.affiliation a {
+    color: #00ffff;
+    text-decoration: none;
+}
+
+.affiliation a:hover {
+    text-decoration: underline;
+}
+
+/* Section headings */
+h2 {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #ffff00;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+h2 a {
+    color: #ffff00;
+    text-decoration: none;
+}
+
+h2 a:hover {
+    text-decoration: underline;
+}
+
+/* Collapsible sections */
+details {
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+details summary {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #ffff00;
+    cursor: pointer;
+    list-style: none;
+    display: inline;
+}
+
+details summary::-webkit-details-marker {
+    display: none;
+}
+
+details summary::before {
+    content: "► ";
+    color: #ffff00;
+}
+
+details[open] summary::before {
+    content: "▼ ";
+}
+
+details summary:hover {
+    text-decoration: underline;
+}
+
+.details-content {
+    margin-top: 15px;
+    margin-left: 20px;
+    padding-left: 15px;
+    border-left: 1px solid #333;
+}
+
+h3 {
+    font-size: 1em;
+    font-weight: bold;
+    color: #fff;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+/* Paragraphs */
+p {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+/* Links */
+a {
+    color: #00ffff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Strong/Bold */
+strong {
+    color: #fff;
+    font-weight: bold;
+}
+
+/* Lists */
+ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin-bottom: 15px;
+}
+
+ul li {
+    margin-bottom: 12px;
+    padding-left: 20px;
+    position: relative;
+}
+
+ul li::before {
+    content: "■";
+    position: absolute;
+    left: 0;
+    color: #fff;
+    font-size: 0.7em;
+}
+
+/* Sections */
+section {
+    margin-bottom: 30px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px 15px;
+    }
+
+    h1.name {
+        font-size: 1.4em;
+    }
+
+    body {
+        font-size: 14px;
+    }
+}
+
+/* Print styles */
+@media print {
+    body {
+        background: #fff;
+        color: #000;
+    }
+
+    a {
+        color: #000;
+    }
+
+    h1.name a,
+    h2,
+    h2 a {
+        color: #000;
+    }
+}
