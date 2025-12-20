@@ -20,6 +20,20 @@ body {
     padding: 40px 20px;
 }
 
+/* Email obfuscation - reverse display */
+.email {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+}
+
+.email::before {
+    content: attr(data-domain);
+}
+
+.email::after {
+    content: "@" attr(data-user);
+}
+
 /* Name/Title */
 h1.name {
     font-size: 1.6em;
@@ -157,6 +171,70 @@ ul li::before {
     left: 0;
     color: #fff;
     font-size: 0.7em;
+}
+
+/* Submission history for papers */
+.submission-history {
+    color: #888;
+    font-size: 0.9em;
+    font-style: italic;
+}
+
+/* Legend box for submission symbols */
+.legend-box {
+    display: block;
+    padding: 10px 14px;
+    border: 1px solid #444;
+    font-size: 0.85em;
+    color: #888;
+    margin: 10px 0 20px 0;
+    line-height: 1.6;
+}
+
+.legend-symbols {
+    text-align: center;
+    margin-top: 8px;
+}
+
+/* Paper metadata (authors, notes) */
+.paper-meta {
+    color: #888;
+    font-size: 0.9em;
+}
+
+.paper-meta strong {
+    color: #aaa;
+}
+
+/* Paper title */
+.paper-title {
+    color: #fff;
+}
+
+.rej { color: #ff4444; }  /* red for reject */
+.maj { color: #ffaa00; }  /* orange for major revision */
+.min { color: #ffdd00; }  /* yellow for minor revision */
+.acc { color: #44ff44; }  /* green for accept */
+
+/* Award highlight */
+.award {
+    color: #ffd700;  /* gold */
+    font-weight: bold;
+}
+
+/* Related papers (conf + journal extension) */
+ul.related-papers {
+    margin-bottom: 5px;
+}
+
+ul.related-papers li.extended {
+    color: #ccc;
+    margin-top: -5px;
+    padding-left: 30px;
+}
+
+ul.related-papers li.extended::before {
+    content: "";
 }
 
 /* Sections */
