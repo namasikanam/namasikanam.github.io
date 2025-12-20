@@ -1,4 +1,4 @@
-/* Dark Academic Style - Inspired by classic academic pages */
+/* Dune Theme - Arrakis Desert Style */
 
 * {
     margin: 0;
@@ -10,8 +10,24 @@ body {
     font-family: monospace, 'Courier New', Courier;
     font-size: 16px;
     line-height: 1.5;
-    color: #fff;
-    background-color: #000;
+    color: #e8dcc4;
+    background-image: url('pics/dune.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-color: #0f0e0c;
+    min-height: 100vh;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(15, 14, 12, 0.85);
+    z-index: -1;
 }
 
 .container {
@@ -42,12 +58,12 @@ h1.name {
 }
 
 h1.name a {
-    color: #00ff00;
-    text-decoration: underline;
+    color: #c9a227;
+    text-decoration: none;
 }
 
 h1.name a:hover {
-    color: #00cc00;
+    color: #e8b923;
 }
 
 /* Affiliation block */
@@ -57,11 +73,12 @@ h1.name a:hover {
 }
 
 .affiliation a {
-    color: #00ffff;
+    color: #d4a574;
     text-decoration: none;
 }
 
 .affiliation a:hover {
+    color: #e8b88a;
     text-decoration: underline;
 }
 
@@ -69,13 +86,13 @@ h1.name a:hover {
 h2 {
     font-size: 1.2em;
     font-weight: bold;
-    color: #ffff00;
+    color: #c9a227;
     margin-top: 30px;
     margin-bottom: 15px;
 }
 
 h2 a {
-    color: #ffff00;
+    color: #c9a227;
     text-decoration: none;
 }
 
@@ -92,7 +109,7 @@ details {
 details summary {
     font-size: 1.2em;
     font-weight: bold;
-    color: #ffff00;
+    color: #c9a227;
     cursor: pointer;
     list-style: none;
     display: inline;
@@ -104,7 +121,7 @@ details summary::-webkit-details-marker {
 
 details summary::before {
     content: "► ";
-    color: #ffff00;
+    color: #d4883a;
 }
 
 details[open] summary::before {
@@ -119,13 +136,13 @@ details summary:hover {
     margin-top: 15px;
     margin-left: 20px;
     padding-left: 15px;
-    border-left: 1px solid #333;
+    border-left: 1px solid #3d3428;
 }
 
 h3 {
     font-size: 1em;
     font-weight: bold;
-    color: #fff;
+    color: #d4883a;
     margin-top: 20px;
     margin-bottom: 10px;
 }
@@ -138,11 +155,12 @@ p {
 
 /* Links */
 a {
-    color: #00ffff;
+    color: #d4a574;
     text-decoration: none;
 }
 
 a:hover {
+    color: #e8c49a;
     text-decoration: underline;
 }
 
@@ -169,7 +187,7 @@ ul li::before {
     content: "■";
     position: absolute;
     left: 0;
-    color: #fff;
+    color: #d4883a;
     font-size: 0.7em;
 }
 
@@ -184,9 +202,9 @@ ul li::before {
 .legend-box {
     display: block;
     padding: 10px 14px;
-    border: 1px solid #444;
+    border: 1px solid #3d3428;
     font-size: 0.85em;
-    color: #888;
+    color: #a89a82;
     margin: 10px 0 20px 0;
     line-height: 1.6;
 }
@@ -198,12 +216,12 @@ ul li::before {
 
 /* Paper metadata (authors, notes) */
 .paper-meta {
-    color: #888;
+    color: #a89a82;
     font-size: 0.9em;
 }
 
 .paper-meta strong {
-    color: #aaa;
+    color: #c9a227;
 }
 
 /* Paper title */
@@ -211,14 +229,14 @@ ul li::before {
     color: #fff;
 }
 
-.rej { color: #ff4444; }  /* red for reject */
-.maj { color: #ffaa00; }  /* orange for major revision */
-.min { color: #ffdd00; }  /* yellow for minor revision */
-.acc { color: #44ff44; }  /* green for accept */
+.rej { color: #8b4513; }  /* dark sand for reject */
+.maj { color: #d4883a; }  /* spice orange for major revision */
+.min { color: #c9a227; }  /* spice gold for minor revision */
+.acc { color: #44aa44; }  /* green for accept (academic standard) */
 
 /* Award highlight */
 .award {
-    color: #ffd700;  /* gold */
+    color: #4a9eff;
     font-weight: bold;
 }
 
