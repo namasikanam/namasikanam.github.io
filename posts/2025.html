@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post</title>
+    <link rel="stylesheet" href="../styles.css">
+    <!-- Marked.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="name"><a href="../index.html">2025</a></h1>
+        <p><a href="../index.html?view=blog">← Back to homepage</a></p>
+        <div id="post-content">Loading...</div>
+    </div>
+    <script>
+    // Get the Markdown file name from the URL, default to sample-post.md
+    function getMarkdownFile() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get('md') || './2025.md';
+    }
+    fetch(getMarkdownFile())
+        .then(response => response.text())
+        .then(md => {
+            document.getElementById('post-content').innerHTML = marked.parse(md);
+        })
+        .catch(err => {
+            document.getElementById('post-content').innerHTML = '<p>Failed to load post.</p>';
+        });
+    </script>
+</body>
+</html>

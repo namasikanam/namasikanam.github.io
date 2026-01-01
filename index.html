@@ -149,33 +149,14 @@
               Here are <a href="https://blog.csdn.net/ta201314">my high school blog for competitive programming</a> and <a href="https://www.zhihu.com/people/ta123/posts">Zhihu articles</a> in Chinese.
             </p>
 
-            <!--
-            <h3>2024</h3>
+            
+            <h3>2025</h3>
             <ul>
                 <li>
-                    Dec 15 — <a href="posts/sample-post.html">Your First Blog Post Title Goes Here</a> [Research]
-                </li>
-                <li>
-                    Dec 01 — <a href="#">Getting Started with [Technology/Topic]</a> [Tutorial]
-                </li>
-                <li>
-                    Nov 20 — <a href="#">Reflections on [Topic in Your Field]</a> [Thoughts]
-                </li>
-                <li>
-                    Nov 10 — <a href="#">Life Update: [Personal Milestone]</a> [Life]
+                    Dec 31 — <a href="posts/2025.html"> 2025 (in Chinese) </a> [Personal]
                 </li>
             </ul>
-
-            <h3>2023</h3>
-            <ul>
-                <li>
-                    Oct 25 — <a href="#">Deep Dive: [Research Topic Explained]</a> [Research]
-                </li>
-                <li>
-                    Sep 15 — <a href="#">Conference Trip Report</a> [Travel]
-                </li>
-            </ul>
-            -->
+           
             </div>
         </details>
 
@@ -200,6 +181,26 @@
             document.querySelectorAll('abbr.active').forEach(a => a.classList.remove('active'));
         }
     });
+
+        // Auto-expand Blog details if view=blog in URL
+        (function() {
+            const params = new URLSearchParams(window.location.search);
+            if (params.get('view') === 'blog') {
+                document.querySelectorAll('details').forEach(d => {
+                    const summary = d.querySelector('summary');
+                    if (summary && summary.textContent.trim().toLowerCase() === 'blog') {
+                        d.open = true;
+                    } else {
+                        d.open = false;
+                    }
+                });
+                // 可选：滚动到 Blog 区域
+                const blogSummary = Array.from(document.querySelectorAll('summary')).find(s => s.textContent.trim().toLowerCase() === 'blog');
+                if (blogSummary) {
+                    blogSummary.scrollIntoView({behavior: 'smooth'});
+                }
+            }
+        })();
     </script>
 </body>
 </html>
