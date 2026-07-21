@@ -30,4 +30,4 @@
 
 | Assumption | Model | Agent | Operator | Time | Duration | Result | Conversation |
 |---|---|---|---|---|---|---|---|
-| Phi-hiding | GPT-5 | Codex | [namasikanam](https://github.com/namasikanam) | 2026-07-21 | ~11 h | partial — summary corrected; exact-loss restatement disproved and Lean-verified | [write-up + Lean](attempts/phi-hiding/) |
+| Phi-hiding | GPT-5 | Codex | [namasikanam](https://github.com/namasikanam) | 2026-07-21 | 0.5 h | disproof of the equivalence between two statements | [write-up + Lean](attempts/phi-hiding/) |
