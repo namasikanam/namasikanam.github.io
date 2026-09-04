@@ -1,0 +1,166 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../layouts/Base.astro";
+import Fold from "../components/Fold.astro";
+import PublicationItem from "../components/Publication.astro";
+import { publicationsByYear, outcomeSymbols } from "../data/publications";
+import { courses } from "../data/teaching";
+
+// Flip to true to show the Blog section (posts live in posts/*.md).
+const SHOW_BLOG = false;
+const posts = SHOW_BLOG
+  ? (await getCollection("posts")).sort((a, b) => b.id.localeCompare(a.id))
+  : [];
+---
+
+<Base title="Xingyu Xie (namasikanam)">
+  <h1 class="name"><a href="#">Xingyu Xie (namasikanam)</a></h1>
+
+  <div class="affiliation">
+    Max-Planck Institute for Security and Privacy (MPI-SP)<br />
+    Foundations of Security and Privacy Group<br />
+    MB5-193, Universitaetsstraße 140<br />
+    Bochum, Germany<br />
+    Email: <span class="email" data-user="eix.uygnix" data-domain="gro.ps-ipm"></span><br />
+    <a href="https://github.com/namasikanam" title="GitHub"><i class="fab fa-github"></i></a>
+    <a href="https://scholar.google.com/citations?user=AcTW7lQAAAAJ&hl=en" title="Google Scholar" target="_blank"><i class="fas fa-graduation-cap"></i></a>
+    <a href="https://stackexchange.com/users/11794740/namasikanam" title="Stack Exchange" target="_blank"><i class="fab fa-stack-exchange"></i></a>
+    <a href="https://www.zhihu.com/people/ta123" title="知乎"><i class="fab fa-zhihu"></i></a>
+  </div>
+
+  <Fold title="About Me">
+    <p>
+      I am a PhD student at MPI-SP, fortunately supervised by Prof. Gilles Barthe.
+      I'm interested in formal verification, especially its application to security and its interplay with machine learning.
+    </p>
+    <p>
+      I received my bachelor's degree in 2021 and my master's degree in 2024 from Tsinghua University.
+      During the time, I did internships at <a href="https://en.megvii.com/" target="_blank">Megvii</a> and <a href="https://www.realai.ai/" target="_blank">RealAI</a>, and involved in <a href="https://closed.social/">Closed Social</a>.
+    </p>
+    <p>
+      I was a competitive programmer during 2011-2021, winning several gold medals including <abbr title="Chinese National Olympiad in Informatics">NOI</abbr> 2016.
+      I was also involved in the organization of several programming competitions, including <abbr title="Tsinghua University Programming Contest">THUPC</abbr> 2019-2021.
+    </p>
+    <p>
+      I am a bit cynical. I co-organized a satirical public activity, Huatsing Special Ordinary Scholarship (华清大学特普通奖学金) in 2020-2021.
+      We're mocking Special Scholarship (for the top-10 students) in Tsinghua University.
+      Why don't ordinary students deserve to be awarded?
+      I plan to re-set-up our official website, but I am very lazy, so for the moment, if you are interested, you can search on the Chinese Internet. The following Chinese media coverage is based on direct interviews with us: <a href="https://qxcm.tsjc.tsinghua.edu.cn/pc/folder120/folder127/2021-11-18/XqCKNJ3LLprhRTGE.html" target="_blank">清新传媒 (TSJC Media)</a>, <a href="https://zhuanlan.zhihu.com/p/556462192" target="_blank">真实故事计划 (True Story Project, Top 10 in 2022)</a>.
+    </p>
+    <p>
+      I am nerdy, honestly nerdier than ChatGPT.
+      I am learning how to interact with people, learning the relationships, and learning to understand and take care of the emotion of myself and others.
+      I hope one day I will have the courage and ability to interact with the world by an authentic self.
+    </p>
+  </Fold>
+
+  <Fold title="Publications">
+    <p>
+      Statistics: <a href="https://scholar.google.com/citations?user=AcTW7lQAAAAJ">Google Scholar</a>.
+    </p>
+    <div class="legend-box">
+      Besides the publication lists, I also list the uncomfortable stories behind my papers. The reason is that, I don't really like the success narratives, while I understand the cruelty of this competitive world. And I hope these can encourage those who are struggling with rejections.
+      <div class="legend-symbols">
+        {Object.entries(outcomeSymbols).map(([key, { symbol, label }], i) => (
+          <>
+            {i > 0 && " · "}
+            <span class={key}>{symbol}</span> {label}
+          </>
+        ))}
+      </div>
+    </div>
+
+    {publicationsByYear.map(({ year, publications }) => (
+      <>
+        <h3>{year}</h3>
+        <ul>
+          {publications.map((pub) => <PublicationItem pub={pub} />)}
+        </ul>
+      </>
+    ))}
+  </Fold>
+
+  <Fold title="Teaching">
+    <p>I served as teaching assistants for the following courses at Tsinghua University:</p>
+    <ul>
+      {courses.map((course) => (
+        <li>
+          <span class="paper-title">{course.title}</span>
+          <br />
+          <span class="paper-meta">
+            {course.term}
+            {course.lab && (
+              <> · Lab: <a href={course.lab.href}>{course.lab.label}</a>{course.lab.note && ` ${course.lab.note}`}</>
+            )}
+          </span>
+        </li>
+      ))}
+    </ul>
+    <p>
+      I like teaching, for the love of knowledge and the empathy with every student. I was very lucky to have a group of friends who are enthusiastic about teaching.
+    </p>
+  </Fold>
+
+  {SHOW_BLOG && (
+    <Fold title="Blog">
+      <p>
+        I really hope one day I will not be so lazy and write some blogs.
+        Here are <a href="https://blog.csdn.net/ta201314">my high school blog for competitive programming</a> and <a href="https://www.zhihu.com/people/ta123/posts">Zhihu articles</a> in Chinese.
+      </p>
+      <ul>
+        {posts.map((post) => (
+          <li>
+            <a href={`/posts/${post.id}/`}>{post.data.title ?? post.id}</a>
+          </li>
+        ))}
+      </ul>
+    </Fold>
+  )}
+
+  <Fold title="Miscellaneous">
+    <h3>Interesting Papers</h3>
+    <ul>
+      <li>Social processes and proofs of theorems and programs (CACM 1979)</li>
+      <li>Formal certification of code-based cryptographic proofs (POPL 2009)</li>
+      <li>Computer-aided security proofs for the working cryptographer (CRYPTO 2011)</li>
+      <li>Transformers are Inherently Succinct (ICLR 2026)</li>
+    </ul>
+    <h3><span class="paper-title"><a href="/crypto-hardness/">AI Attempts on Hardness Assumptions in Cryptography</a></span></h3>
+  </Fold>
+</Base>
+
+<script>
+  // Touch support for abbr tooltips
+  document.querySelectorAll("abbr").forEach((abbr) => {
+    abbr.addEventListener("click", function (this: HTMLElement, e) {
+      // Remove active class from all other abbrs
+      document.querySelectorAll("abbr.active").forEach((a) => {
+        if (a !== this) a.classList.remove("active");
+      });
+      // Toggle this abbr
+      this.classList.toggle("active");
+      e.preventDefault();
+    });
+  });
+  // Close tooltip when clicking elsewhere
+  document.addEventListener("click", (e) => {
+    if (!(e.target as HTMLElement).closest("abbr")) {
+      document.querySelectorAll("abbr.active").forEach((a) => a.classList.remove("active"));
+    }
+  });
+
+  // Auto-expand Blog details if view=blog in URL
+  (() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("view") === "blog") {
+      document.querySelectorAll("details").forEach((d) => {
+        const summary = d.querySelector("summary");
+        d.open = summary?.textContent?.trim().toLowerCase() === "blog";
+      });
+      const blogSummary = Array.from(document.querySelectorAll("summary")).find(
+        (s) => s.textContent?.trim().toLowerCase() === "blog",
+      );
+      blogSummary?.scrollIntoView({ behavior: "smooth" });
+    }
+  })();
+</script>

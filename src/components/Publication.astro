@@ -1,0 +1,50 @@
+---
+import { outcomeSymbols, type Publication } from "../data/publications";
+
+interface Props {
+  pub: Publication;
+}
+const { pub } = Astro.props;
+---
+
+<li>
+  <span class="paper-title">{pub.title}</span>
+  {pub.venue && (
+    <>
+      {" " + pub.venue}
+      {pub.award && <> (<span class="award">{pub.award}</span>).</>}
+    </>
+  )}
+  {pub.links?.map((link) => <a href={link.href}>[{link.label}]</a>)}
+  <br />
+  <span class="paper-meta">
+    {pub.authors.map((a, i) => (
+      <>
+        {a.self ? (
+          <strong>{a.name}{a.star && "*"}</strong>
+        ) : (
+          <>{a.name}{a.star && "*"}</>
+        )}
+        {i < pub.authors.length - 1 ? ", " : "."}
+      </>
+    ))}
+    {pub.authorNote && ` ${pub.authorNote}`}
+  </span>
+  {pub.history && (
+    <>
+      <br />
+      <span class="submission-history">
+        Submissions:{" "}
+        {pub.history.map((h, i) => (
+          <>
+            {h.venue}{" "}
+            <span class={h.outcome} title={outcomeSymbols[h.outcome].label}>
+              {outcomeSymbols[h.outcome].symbol}
+            </span>
+            {i < pub.history!.length - 1 && " → "}
+          </>
+        ))}
+      </span>
+    </>
+  )}
+</li>

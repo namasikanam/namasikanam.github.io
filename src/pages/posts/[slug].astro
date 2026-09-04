@@ -1,0 +1,37 @@
+---
+import { getCollection, render } from "astro:content";
+import Base from "../../layouts/Base.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts");
+  return posts.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const title = (entry.data as { title?: string }).title ?? entry.id;
+---
+
+<Base title={title}>
+  <h1 class="name"><a href="/">{title}</a></h1>
+  <p><a href="/?view=blog">← Back to homepage</a></p>
+  <div class="post">
+    <Content />
+  </div>
+</Base>
+
+<style is:global>
+  .post h2 {
+    font-size: 1.2em; color: #c9a227; margin: 30px 0 15px 0;
+  }
+  .post h3 {
+    font-size: 1em; color: #d4883a; margin: 20px 0 10px 0;
+  }
+  .post blockquote {
+    border-left: 2px solid #3d3428; padding-left: 15px;
+    color: #a89a82; margin: 15px 0;
+  }
+</style>

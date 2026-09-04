@@ -11,7 +11,6 @@ Inclusion bar for a assumption: it underlies a system deployed today, **or** a p
 
 ```
 crypto-hardness/
-├── index.html              # the page (renders both tables client-side, KaTeX for math)
 ├── data/
 │   ├── attempts.md         # the crowd-sourced proof-attempt log — a plain Markdown table
 │   └── assumptions.md      # the catalogue — a plain Markdown table, human-editable
@@ -21,9 +20,13 @@ crypto-hardness/
     └── … (35 files)
 ```
 
-The site has **no build step and no dependencies to install** — `index.html` fetches the two
-`data/*.md` files at load time, parses the Markdown tables, and renders them (KaTeX is pulled
-from a CDN for the `$…$` math). Editing a `.md` file and reloading is all it takes.
+**Contributors never need to install or build anything** — the two `data/*.md` files are the
+source of truth, edited as plain Markdown (easiest via GitHub's web editor, see below). The
+page itself is rendered at build time by the site's Astro setup
+(`src/pages/crypto-hardness/`): it parses the Markdown tables, renders the `$…$` math with
+KaTeX, and renders each `assumptions/<slug>.md` as a page at
+`/crypto-hardness/assumptions/<slug>/`. GitHub Pages rebuilds the site automatically when a
+pull request is merged.
 
 ## Contributing a proof attempt
 

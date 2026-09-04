@@ -1,0 +1,54 @@
+---
+import { getCollection, render } from "astro:content";
+import Base from "../../../layouts/Base.astro";
+import "katex/dist/katex.min.css";
+
+export async function getStaticPaths() {
+  const assumptions = await getCollection("assumptions");
+  return assumptions.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<Base title={`${entry.id} — Cryptographic Hardness Assumptions`}>
+  <a class="backlink" href="/crypto-hardness/">← Hardness assumptions</a>
+  <div class="assumption">
+    <Content />
+  </div>
+  <div class="source-note">
+    Source:
+    <a
+      href={`https://github.com/namasikanam/namasikanam.github.io/blob/main/crypto-hardness/assumptions/${entry.id}.md`}
+      target="_blank"
+      rel="noopener">assumptions/{entry.id}.md</a
+    > — corrections welcome via pull request.
+  </div>
+</Base>
+
+<style is:global>
+  .backlink { font-size: 0.9em; margin-bottom: 20px; display: inline-block; }
+
+  .assumption h1 {
+    font-size: 1.4em; color: #c9a227; margin: 20px 0 15px 0;
+  }
+  .assumption h2 {
+    font-size: 1.1em; color: #d4883a; margin: 25px 0 10px 0;
+  }
+  .assumption code {
+    color: #e8dcc4; background: rgba(255, 255, 255, 0.06); padding: 0 3px;
+  }
+  .assumption .katex { font-size: 1em; }
+  .assumption .katex-display { overflow-x: auto; overflow-y: hidden; padding: 4px 0; }
+  .assumption ul { margin-left: 0; }
+
+  .source-note {
+    margin-top: 30px; padding-top: 15px;
+    border-top: 1px solid #3d3428;
+    color: #6a6252; font-size: 0.85em;
+  }
+</style>
